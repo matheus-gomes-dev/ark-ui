@@ -15,4 +15,4 @@ describe('Avatar', () => {
     expect(tree).toMatchSnapshot();
   });
 
-})
+});
