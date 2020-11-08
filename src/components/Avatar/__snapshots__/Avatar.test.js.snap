@@ -8,7 +8,7 @@ exports[`Avatar should render component correctly when type equals wallet 1`] = 
     className="bg-cover bg-center h-24 w-24 rounded-full"
     style={
       Object {
-        "backgroundImage": "url(avatar.png)",
+        "backgroundImage": "url(wallet.png)",
       }
     }
   />
@@ -16,14 +16,14 @@ exports[`Avatar should render component correctly when type equals wallet 1`] = 
     className="flex flex-col justify-center items-left pl-4"
   >
     <span
-      className="font-bold text-xl text-black"
+      className="text-sm text-gray-600"
     >
       Matheus Gomes
     </span>
     <span
-      className="text-sm text-gray-600"
+      className="font-bold text-xl text-black"
     >
-      Total Balance: 0.00
+      0.00
     </span>
   </div>
 </div>
