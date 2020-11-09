@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Avatar from './';
+import Header from './';
 
-describe('Avatar', () => {
+describe('Header', () => {
   
-  it('should render avatar component and not crash', () => {
+  it('should render header and not crash', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <Avatar />,
+      <Header />,
       div
     );
     ReactDOM.unmountComponentAtNode(div);

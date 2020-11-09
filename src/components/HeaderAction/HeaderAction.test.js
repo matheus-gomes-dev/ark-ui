@@ -1,23 +1,34 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import ReactDOM from 'react-dom';
 
 import HeaderAction from './';
 
 describe('HeaderAction', () => {
   
-  it('should render list wallets component correctly', () => {
-    const tree = renderer.create(<HeaderAction action="list-wallets" />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it('should render component for list wallets action', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <HeaderAction action="list-wallets" />,
+      div
+    );
+    ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('should render import wallet component correctly', () => {
-    const tree = renderer.create(<HeaderAction action="import-wallet" />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it('should render component for import wallet action', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <HeaderAction action="import-wallet" />,
+      div
+    );
+    ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('should render add wallet component correctly', () => {
-    const tree = renderer.create(<HeaderAction action="add-wallet" />).toJSON();
-    expect(tree).toMatchSnapshot();
+  it('should render component for add wallet action', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <HeaderAction action="add-wallet" />,
+      div
+    );
+    ReactDOM.unmountComponentAtNode(div);
   });
-
 });
