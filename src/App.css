@@ -16,6 +16,28 @@
   height: 200px;
 }
 
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.input-error {
+  border: 1px solid #ff9999;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #BFDEFF;
+}
+
+.input-error:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px #ff9999;
+}
+
 @media only screen and (max-width: 640px) {
   .section-responsive-picture {
     width: 150px;
