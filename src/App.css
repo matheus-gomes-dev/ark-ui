@@ -2,3 +2,23 @@
   text-align: center;
 }
 
+.bg-custom-gray {
+  background-color: #2D2F38;
+}
+
+.h-half {
+  height: 50%;
+  max-height: 50%;
+}
+
+.section-responsive-picture {
+  width: 200px;
+  height: 200px;
+}
+
+@media only screen and (max-width: 640px) {
+  .section-responsive-picture {
+    width: 150px;
+    height: 150px;
+  }
+}

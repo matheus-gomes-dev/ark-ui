@@ -6,7 +6,7 @@ import AvatarIcon from 'assets/avatar.png';
 const Avatar = ({ name = 'Matheus', amount = '0.00' }) => (
   <div className="h-full flex justify-center items-center">
     <div
-      className={`bg-cover bg-center h-16 w-16 hidden md:block rounded-full`}
+      className="bg-cover bg-center h-16 w-16 hidden md:block rounded-full"
       style={{ backgroundImage: `url(${AvatarIcon})`}}
     />
     <div className="flex flex-col justify-center items-left pl-4">

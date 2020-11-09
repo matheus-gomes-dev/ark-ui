@@ -4,6 +4,7 @@ import './tailwind.output.css';
 import './App.css';
 import Header from 'components/Header';
 import MyWallets from 'components/MyWallets';
+import ImportWallet from 'components/ImportWallet';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/" component={MyWallets} />
-            <Route exact path="/import-wallet" component={MyWallets} />
+            <Route exact path="/import-wallet" component={ImportWallet} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
