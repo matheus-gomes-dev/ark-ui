@@ -12,8 +12,10 @@ const icons = {
 const defineIconClasses = (isActive, hasDivider) => {
   const classes = `
     box-border
-    h-24
-    w-32
+    h-12
+    w-12
+    md:h-16
+    md:w-24
     cursor-pointer
     ${isActive ? 'text-gray-800' : 'text-gray-600'}
     hover:text-gray-800
@@ -28,9 +30,10 @@ const defineIconClasses = (isActive, hasDivider) => {
 
 const HeaderAction = ({ action, label, isActive = false, hasDivider }) => (
   <div className={defineIconClasses(isActive, hasDivider)}>
-    <FontAwesomeIcon icon={icons[action]} />
-    <span>{label}</span>
-    <div className={`box-border h-1 w-16 mt-2 ${isActive ? 'bg-red-600' : 'bg-white'}`} />
+    <FontAwesomeIcon className={`${isActive ? 'text-red-600' : ''} text-xl`} icon={icons[action]} title={label}/>
+    <div className="hidden lg:block ">
+      <span className="text-xs">{label}</span>
+    </div>
   </div>
 );
 

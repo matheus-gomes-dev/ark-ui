@@ -10,9 +10,4 @@ describe('Avatar', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render component correctly when type equals wallet', () => {
-    const tree = renderer.create(<Avatar type="wallet" />).toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-
 });

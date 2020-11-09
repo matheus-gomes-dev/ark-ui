@@ -1,14 +1,16 @@
 import './tailwind.output.css';
 import './App.css';
 import Header from 'components/Header';
-import Display from 'components/Display';
+import MyWallets from 'components/MyWallets';
 
 
 function App() {
   return (
     <div className="container mx-auto">
+    <div style={{ maxWidth: '90%', margin: 'auto' }}>
       <Header />
-      <Display />
+      <MyWallets />
+    </div>
     </div>
   );
 }
