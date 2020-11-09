@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import HeaderComponent from './';
 
@@ -15,6 +16,10 @@ export default {
   },
 };
 
-const Template = (args) => <HeaderComponent {...args} />;
+const Template = (args) => (
+  <Router>
+    <HeaderComponent {...args} />
+  </Router>
+);
 
 export const Header = Template.bind({});

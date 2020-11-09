@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Logo from 'assets/ARK-400x400.png';
 import Avatar from 'components/Avatar';
@@ -16,9 +17,15 @@ const Header = () => (
       </div>
     </div>
     <div className="object-right flex justify-center items-center md:pr-4">
-      <HeaderAction action="list-wallets" hasDivider={true} isActive={true} />
-      <HeaderAction action="import-wallet" hasDivider={true} />
-      <HeaderAction action="add-wallet" />
+      <Link to={{ pathname: '/'}}>
+        <HeaderAction action="list-wallets" hasDivider={true} isActive={true} />
+      </Link>
+      <Link to={{ pathname: '/import-wallet'}}>
+        <HeaderAction action="import-wallet" hasDivider={true} />
+      </Link>
+      <Link to={{ pathname: '/add-wallet'}}>
+        <HeaderAction action="add-wallet" />
+      </Link>
     </div>
   </div>
 );
