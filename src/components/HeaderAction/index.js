@@ -9,6 +9,12 @@ const icons = {
   'add-wallet': faPlus
 };
 
+const labels = {
+  'list-wallets': 'My Wallets',
+  'import-wallet': 'Import Wallet',
+  'add-wallet': 'Create Wallet'
+};
+
 const defineIconClasses = (isActive, hasDivider) => {
   const classes = `
     box-border
@@ -28,11 +34,11 @@ const defineIconClasses = (isActive, hasDivider) => {
 
 }
 
-const HeaderAction = ({ action, label, isActive = false, hasDivider }) => (
+const HeaderAction = ({ action, isActive = false, hasDivider }) => (
   <div className={defineIconClasses(isActive, hasDivider)}>
-    <FontAwesomeIcon className={`${isActive ? 'text-red-600' : ''} text-xl`} icon={icons[action]} title={label}/>
+    <FontAwesomeIcon className={`${isActive ? 'text-red-600' : ''} text-xl`} icon={icons[action]} title={labels[action]}/>
     <div className="hidden lg:block ">
-      <span className="text-xs">{label}</span>
+      <span className="text-xs">{labels[action]}</span>
     </div>
   </div>
 );
@@ -40,7 +46,6 @@ const HeaderAction = ({ action, label, isActive = false, hasDivider }) => (
 
 HeaderAction.propTypes = {
   action: PropTypes.oneOf(['list-wallets', 'import-wallet', 'add-wallet']),
-  label: PropTypes.string,
   isActive: PropTypes.bool,
   hasDivider: PropTypes.bool
 };

@@ -16,9 +16,9 @@ const Header = () => (
       </div>
     </div>
     <div className="object-right flex justify-center items-center md:pr-4">
-      <HeaderAction action="list-wallets" label="My Wallets" hasDivider={true} isActive={true} />
-      <HeaderAction action="import-wallet" label="Import Wallet" hasDivider={true} />
-      <HeaderAction action="add-wallet" label="Create Wallet" />
+      <HeaderAction action="list-wallets" hasDivider={true} isActive={true} />
+      <HeaderAction action="import-wallet" hasDivider={true} />
+      <HeaderAction action="add-wallet" />
     </div>
   </div>
 );
