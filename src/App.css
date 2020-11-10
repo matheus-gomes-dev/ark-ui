@@ -44,3 +44,43 @@ input:focus {
     height: 150px;
   }
 }
+
+button {
+  background-color: #E0F0FD;
+  border: none;
+  color: #037CFE;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button.btn-sm {
+  width: 80px;
+  height: 28px;
+}
+
+button.btn-md {
+  width: 128px;
+  height: 32px;
+}
+
+button.btn-lg {
+  width: 248px;
+  height: 48px;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+button:hover:enabled {
+  background-color: #037CFE;
+  border: none;
+  color: white;
+}

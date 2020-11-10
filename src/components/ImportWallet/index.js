@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Input from 'components/Input';
+import Button from 'components/Button';
 import ImportWalletPicture from 'assets/importWallet.png';
 
 const ImportWallet = () => (
@@ -10,7 +11,10 @@ const ImportWallet = () => (
         <span>1. Import Wallet</span>
       </div>
       <div className="m-8">
-        <Input label="Address" error="Wallet not found" />
+        <Input label="Address" />
+      </div>
+      <div className="flex justify-center items-center sm:pt-8">
+        <Button label="Import" size="md" />
       </div>
     </div>
     <div className="h-half w-full flex flex-col justify-center items-center bg-custom-gray rounded-b-lg">
