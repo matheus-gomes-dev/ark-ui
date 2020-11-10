@@ -5,7 +5,7 @@ import Button from 'components/Button';
 import ImportWalletPicture from 'assets/importWallet.png';
 
 const ImportWallet = () => (
-  <div className="container xl bg-white mt-8 rounded-lg" style={{ height: 'calc(100vh - 180px)' }}>
+  <div className="container xl bg-white mt-8 rounded-lg" style={{ height: 'calc(100vh - 180px)', minHeight: '450px' }}>
     <div className="h-half w-full">
       <div className="m-8 pt-8">
         <span>1. Import Wallet</span>
@@ -13,7 +13,7 @@ const ImportWallet = () => (
       <div className="m-8">
         <Input label="Address" />
       </div>
-      <div className="flex justify-center items-center sm:pt-8">
+      <div className="flex justify-center items-center sm:pt-4">
         <Button label="Import" size="md" />
       </div>
     </div>
