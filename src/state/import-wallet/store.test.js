@@ -1,12 +1,12 @@
 import createStore from 'store';
 import actions from './actions';
 
-describe('navigation store', () => {
+describe('import-wallet store', () => {
 
   let store, api;
   beforeEach(function() {
     api = {};
-    store = createStore(api);
+    store = createStore({ api });
   });
 
   describe('value', () => {
