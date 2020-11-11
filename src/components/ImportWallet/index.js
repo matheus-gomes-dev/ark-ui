@@ -1,17 +1,20 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Input from 'components/Input';
 import Button from 'components/Button';
 import ImportWalletPicture from 'assets/importWallet.png';
+import actions from 'state/import-wallet/actions';
 
-const ImportWallet = () => (
+const ImportWallet = ({ value, fieldUpdated }) => (
   <div className="container xl bg-white mt-8 rounded-lg" style={{ height: 'calc(100vh - 180px)', minHeight: '450px' }}>
     <div className="h-half w-full">
       <div className="m-8 pt-8">
         <span>1. Import Wallet</span>
       </div>
       <div className="m-8">
-        <Input label="Address" />
+        <Input label="Address" value={value} onChange={(e) => fieldUpdated(e.target.value)} />
       </div>
       <div className="flex justify-center items-center sm:pt-4">
         <Button label="Import" size="md" />
@@ -35,4 +38,10 @@ const ImportWallet = () => (
   </div>
 );
 
-export default ImportWallet;
+
+const mapStateToProps = state => ({
+  value: state.importWalletReducer.value
+});
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImportWallet);

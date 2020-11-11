@@ -2,10 +2,10 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-import NavigationReducer from 'state/navigation/reducer';
+import importWalletReducer from 'state/import-wallet/reducer';
 
 const rootReducer = combineReducers({
-  NavigationReducer,
+  importWalletReducer,
 });
 
 export default (extraArguments) => configureStore({

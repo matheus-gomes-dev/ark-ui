@@ -1,14 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import Logo from 'assets/ARK-400x400.png';
 import Avatar from 'components/Avatar';
 import HeaderAction from 'components/HeaderAction';
-import actions from 'state/navigation/actions';
 
-const Header = ({ navigationUpdated, screen }) => (
+const Header = ({ location }) => (
   <div className="container xl h-20 md:h-24 rounded-lg bg-white mt-8 flex justify-between">
     <div className="object-left flex">
       <div
@@ -24,33 +23,28 @@ const Header = ({ navigationUpdated, screen }) => (
         <HeaderAction
           action="list-wallets"
           hasDivider={true}
-          isActive={screen === '/'}
-          onClick={() => navigationUpdated('/')}
+          isActive={location.pathname === '/'}
         />
       </Link>
       <Link to={{ pathname: '/import-wallet' }}>
         <HeaderAction
           action="import-wallet"
           hasDivider={true}
-          isActive={screen === 'import-wallet'}
-          onClick={() => navigationUpdated('import-wallet')}
+          isActive={location.pathname === '/import-wallet'}
         />
       </Link>
       <Link to={{ pathname: '/add-wallet'}}>
         <HeaderAction
           action="add-wallet"
-          isActive={screen === 'add-wallet'}
-          onClick={() => navigationUpdated('add-wallet')}
+          isActive={location.pathname === '/add-wallet'}
         />
       </Link>
     </div>
   </div>
 );
 
+Header.propTypes = {
+  location: PropTypes.object
+}
 
-const mapStateToProps = state => ({
-  screen: state.NavigationReducer.screen
-});
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(Header);
