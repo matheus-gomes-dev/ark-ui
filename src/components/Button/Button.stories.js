@@ -47,3 +47,10 @@ Loading.args = {
   label: 'Button',
   isLoading: true
 };
+
+
+export const Success = Template.bind({});
+Success.args = {
+  label: 'Button',
+  success: true
+};
