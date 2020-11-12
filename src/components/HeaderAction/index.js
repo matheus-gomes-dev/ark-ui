@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWallet, faDownload, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faDownload, faPlus, faUserTie } from '@fortawesome/free-solid-svg-icons';
 
 const icons = {
   'list-wallets': faWallet,
   'import-wallet': faDownload,
-  'add-wallet': faPlus
+  'add-wallet': faPlus,
+  'see-delegates': faUserTie
 };
 
 const labels = {
   'list-wallets': 'My Wallets',
   'import-wallet': 'Import Wallet',
-  'add-wallet': 'Create Wallet'
+  'add-wallet': 'Create Wallet',
+  'see-delegates': 'Delegates'
 };
 
 const defineIconClasses = (isActive, hasDivider) => {
