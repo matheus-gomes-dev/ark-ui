@@ -2,6 +2,7 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import importWalletActions from './actions';
+import myWalletsActions from 'state/my-wallets/actions';
 
 describe('import-wallet actions', () => {
 
@@ -25,7 +26,7 @@ describe('import-wallet actions', () => {
     
     const run = () => store.dispatch(importWalletActions.importWallet());
 
-    it('should dispatch load started event', async () => {
+    it('should dispatch load started action', async () => {
       await run();
       expect(store.getActions()).toContainEqual(importWalletActions.loadStarted());
     });
@@ -37,13 +38,24 @@ describe('import-wallet actions', () => {
       expect(api.importWallet).toHaveBeenCalled();
     });
 
-    it('should dispatch load finished event if wallet was found', async () => {
+    it('should dispatch load finished action if wallet was found', async () => {
       api.importWallet = jest.fn(async () => Promise.resolve());
       await run();
       expect(store.getActions()).toContainEqual(importWalletActions.loadFinished());
     });
+
+    it('should dispatch action to add new wallet to my wallets list', async () => {
+      api.importWallet = jest.fn(async () => Promise.resolve({ 
+        data: {
+          data: { id: 'fake-wallet-id' }
+        }
+      }));
+      jest.spyOn(api, 'importWallet');
+      await run();
+      expect(store.getActions()).toContainEqual(myWalletsActions.addWallet({ id: 'fake-wallet-id' }));
+    });
     
-    it('should dispatch load failed event if wallet was not found', async () => {
+    it('should dispatch load failed action if wallet was not found', async () => {
       api.importWallet = jest.fn(async () => Promise.reject());
       await run();
       expect(store.getActions()).toContainEqual(importWalletActions.loadFailed());

@@ -1,4 +1,5 @@
 import { get } from 'lodash';
+import myWalletsActions from 'state/my-wallets/actions';
 
 export const Types = {
   fieldUpdated: 'IMPORT_WALLET_FIELD_UPDATED',
@@ -19,7 +20,7 @@ const importWallet = () => async (dispatch, getState, { api }) => {
   try {
     const apiResponse = await api.importWallet(publicAddress);
     const wallet = get(apiResponse, 'data.data', {});
-    // call my-wallets action to add new wallet
+    dispatch(myWalletsActions.addWallet(wallet));
     dispatch(loadFinished());
   } catch {
     dispatch(loadFailed());
