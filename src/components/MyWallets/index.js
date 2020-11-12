@@ -1,24 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const Display = () => (
-  <div className="container xl bg-white mt-8 rounded-lg overflow-y-scroll" style={{ height: 'calc(100vh - 180px)' }}>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
-    <p>lorem ipsum dolor</p>
+const MyWallets = ({ myWallets }) => (
+  <div className="container xl bg-white mt-8 rounded-lg responsive-display">
+    {JSON.stringify(myWallets)}
   </div>
 );
 
-export default Display;
+const mapStateToProps = state => ({
+  myWallets: state.myWalletsReducer.myWallets
+});
+
+export default connect(mapStateToProps, null)(MyWallets);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Input = ({ label = '', type = 'text', error, value = '', onChange }) => (
-  <div>
+  <div className="m-4 sm:m-8 h-12">
     <div className="mb-1">
       <label className={`font-medium ${error ? 'text-red-500' : 'text-gray-700'} text-sm pl-1`}>
         {label}

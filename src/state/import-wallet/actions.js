@@ -2,21 +2,21 @@ import { get } from 'lodash';
 import myWalletsActions from 'state/my-wallets/actions';
 
 export const Types = {
-  fieldUpdated: 'IMPORT_WALLET_FIELD_UPDATED',
+  nameUpdated: 'IMPORT_WALLET_NAME_UPDATED',
+  addressUpdated: 'IMPORT_WALLET_ADDRESS_UPDATED',
   loadStarted: 'IMPORT_WALLET_LOAD_STARTED',
   loadFinished: 'IMPORT_WALLET_LOAD_FINISHED',
   loadFailed: 'IMPORT_WALLET_LOAD_FAILED'
 };
 
-const fieldUpdated = (value) => ({ type: Types.fieldUpdated, payload: { value }});
+const nameUpdated = (name) => ({ type: Types.nameUpdated, payload: { name }});
+const addressUpdated = (address) => ({ type: Types.addressUpdated, payload: { address }});
 const loadStarted = () => ({ type: Types.loadStarted });
 const loadFinished = () => ({ type: Types.loadFinished });
 const loadFailed = () => ({ type: Types.loadFailed });
 
-const importWallet = () => async (dispatch, getState, { api }) => {
+const importWallet = (publicAddress) => async (dispatch, _, { api }) => {
   dispatch(loadStarted());
-  const state = getState();
-  const publicAddress = get(state, 'importWalletReducer.value', '');
   try {
     const apiResponse = await api.importWallet(publicAddress);
     const wallet = get(apiResponse, 'data.data', {});
@@ -29,7 +29,8 @@ const importWallet = () => async (dispatch, getState, { api }) => {
 
 
 const Actions = {
-  fieldUpdated,
+  nameUpdated,
+  addressUpdated,
   loadStarted,
   loadFinished,
   loadFailed,

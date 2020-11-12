@@ -24,7 +24,7 @@ describe('import-wallet actions', () => {
       api.importWallet = jest.fn(async () => Promise.resolve());
     });
     
-    const run = () => store.dispatch(importWalletActions.importWallet());
+    const run = (publicAddress) => store.dispatch(importWalletActions.importWallet(publicAddress));
 
     it('should dispatch load started action', async () => {
       await run();
@@ -34,8 +34,8 @@ describe('import-wallet actions', () => {
     it('should call api with public address value', async () => {
       api.importWallet = jest.fn(async () => Promise.resolve());
       jest.spyOn(api, 'importWallet');
-      await run();
-      expect(api.importWallet).toHaveBeenCalled();
+      await run('fake-address');
+      expect(api.importWallet).toHaveBeenCalledWith('fake-address');
     });
 
     it('should dispatch load finished action if wallet was found', async () => {

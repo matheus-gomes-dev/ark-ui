@@ -3,15 +3,17 @@ import genericReducer from 'utils/generic-reducer';
 
 const initialState = {
   isLoading: false,
-  value: '',
+  name: '',
+  address: '',
   hasError: false,
   success: false,
 };
 
 const reductionLookup = {
-  [Types.fieldUpdated]: (state, { value }) => ({ ...state, value, hasError: false, success: false }),
+  [Types.nameUpdated]: (state, { name }) => ({ ...state, name, success: false }),
+  [Types.addressUpdated]: (state, { address }) => ({ ...state, address, hasError: false, success: false }),
   [Types.loadStarted]: (state) => ({ ...state, isLoading: true, success: false }),
-  [Types.loadFinished]: (state) => ({ ...state, isLoading: false, value: '', success: true }),
+  [Types.loadFinished]: (state) => ({ ...state, isLoading: false, name: '', address: '', success: true }),
   [Types.loadFailed]: (state) => ({ ...state, isLoading: false, hasError: true, success: false })
 };
 

@@ -8,34 +8,39 @@ import ImportWalletPicture from 'assets/importWallet.png';
 import actions from 'state/import-wallet/actions';
 
 const ImportWallet = ({
-  value,
+  address,
+  name,
   isLoading,
   hasError,
   success,
-  fieldUpdated,
+  addressUpdated,
+  nameUpdated,
   importWallet
 }) => (
-  <div className="container xl bg-white mt-8 rounded-lg" style={{ height: 'calc(100vh - 180px)', minHeight: '450px' }}>
+  <div className="container xl bg-white mt-8 rounded-lg responsive-display">
     <div className="h-half w-full">
-      <div className="m-8 pt-8">
+      <div className="m-4 sm:m-8 pt-2 sm:pt-8">
         <span>1. Import Wallet</span>
       </div>
-      <div className="m-8 h-16">
+        <Input
+          label="Name"
+          value={name}
+          onChange={(e) => nameUpdated(e.target.value)}
+        />
         <Input
           label="Address"
-          value={value}
+          value={address}
           error={hasError ? 'Wallet not found' : ''}
-          onChange={(e) => fieldUpdated(e.target.value)}
+          onChange={(e) => addressUpdated(e.target.value)}
         />
-      </div>
-      <div className="flex justify-center items-center sm:pt-2">
+      <div className="flex justify-center items-center pt-4">
         <Button
           label="Import"
           size="md"
           isLoading={isLoading}
-          disabled={!value}
+          disabled={!address}
           success={success}
-          onClick={() => importWallet()}
+          onClick={() => importWallet(address)}
         />
       </div>
     </div>
@@ -59,7 +64,8 @@ const ImportWallet = ({
 
 
 const mapStateToProps = state => ({
-  value: state.importWalletReducer.value,
+  name: state.importWalletReducer.name,
+  address: state.importWalletReducer.address,
   isLoading: state.importWalletReducer.isLoading,
   hasError: state.importWalletReducer.hasError,
   success: state.importWalletReducer.success

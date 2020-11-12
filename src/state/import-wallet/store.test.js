@@ -9,24 +9,46 @@ describe('import-wallet store', () => {
     store = createStore({ api });
   });
 
-  describe('value', () => {
+  describe('name', () => {
 
     it('should be empty by default', () => {
       const state = store.getState().importWalletReducer;
-      expect(state.value).toBe('');
+      expect(state.address).toBe('');
     });
 
-    it('should change when field updated action is dispatched', () => {
-      store.dispatch(actions.fieldUpdated('fake-value'));
+    it('should change when name updated action is dispatched', () => {
+      store.dispatch(actions.nameUpdated('fake-value'));
       const state = store.getState().importWalletReducer;
-      expect(state.value).toBe('fake-value');
+      expect(state.name).toBe('fake-value');
     });
 
     it('should reset when load finished', () => {
-      store.dispatch(actions.fieldUpdated('fake-value'));
+      store.dispatch(actions.nameUpdated('fake-value'));
       store.dispatch(actions.loadFinished());
       const state = store.getState().importWalletReducer;
-      expect(state.value).toBe('');
+      expect(state.name).toBe('');
+    });
+
+  });
+
+  describe('address', () => {
+
+    it('should be empty by default', () => {
+      const state = store.getState().importWalletReducer;
+      expect(state.address).toBe('');
+    });
+
+    it('should change when address updated action is dispatched', () => {
+      store.dispatch(actions.addressUpdated('fake-value'));
+      const state = store.getState().importWalletReducer;
+      expect(state.address).toBe('fake-value');
+    });
+
+    it('should reset when load finished', () => {
+      store.dispatch(actions.addressUpdated('fake-value'));
+      store.dispatch(actions.loadFinished());
+      const state = store.getState().importWalletReducer;
+      expect(state.address).toBe('');
     });
 
   });
@@ -75,7 +97,7 @@ describe('import-wallet store', () => {
 
     it('should be reseted if input value changes', () => {
       store.dispatch(actions.loadFailed());
-      store.dispatch(actions.fieldUpdated('fake-value'));
+      store.dispatch(actions.addressUpdated('fake-value'));
       const state = store.getState().importWalletReducer;
       expect(state.hasError).toBe(false);
     });
@@ -111,7 +133,7 @@ describe('import-wallet store', () => {
 
     it('should be reseted if input value changes', () => {
       store.dispatch(actions.loadFinished());
-      store.dispatch(actions.fieldUpdated('fake-value'));
+      store.dispatch(actions.addressUpdated('fake-value'));
       const state = store.getState().importWalletReducer;
       expect(state.hasError).toBe(false);
     });
