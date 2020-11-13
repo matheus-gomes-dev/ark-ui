@@ -12,7 +12,7 @@ const MyWallets = ({ myWallets }) => (
       </div>
       <div className="text-sm lg:overflow-x-hidden table-wrapper">
         <table className="table-auto w-full">
-          <thead className="bg-gray-300">
+          <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-2 hidden lg:block">Address</th>
               <th className="px-4 py-2">Name</th>
@@ -26,7 +26,7 @@ const MyWallets = ({ myWallets }) => (
               <tr key={`wallet_${get(wallet, 'address', index)}`}>
                 <td className="border px-4 py-2 hidden lg:block">{get(wallet, 'address', '')}</td>
                 <td className="border px-4 py-2">{get(wallet, 'name', '')}</td>
-                <td className="border px-4 py-2">{get(wallet, 'vote', '')}</td>
+                <td className="border px-4 py-2">{get(wallet, 'delegate', '')}</td>
                 <td className="border px-4 py-2">{get(wallet, 'balance', '')}</td>
                 {/* <td className="border px-4 py-2">
                   <div className="flex justify-evenly items-center">
@@ -43,12 +43,6 @@ const MyWallets = ({ myWallets }) => (
                 </td> */}
               </tr>
             ))}
-            <tr>
-              <td className="border px-4 py-2 hidden lg:block">{get(myWallets, '0.address')}</td>
-              <td className="border px-4 py-2">Matheus' Wallet</td>
-              <td className="border px-4 py-2">bla bla bla</td>
-              <td className="border px-4 py-2">13.32</td>
-            </tr>
           </tbody>
         </table>
       </div>

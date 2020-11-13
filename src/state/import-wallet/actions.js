@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, set } from 'lodash';
 import myWalletsActions from 'state/my-wallets/actions';
 
 export const Types = {
@@ -22,9 +22,20 @@ const importWallet = () => async (dispatch, getState, { api }) => {
     const address = get(state, 'importWalletReducer.address', '');
     const apiResponse = await api.importWallet(address);
     const wallet = get(apiResponse, 'data.data', {});
+
+    const voteAddress = get(wallet, 'vote') || get(wallet, 'attributes.vote');
+    if (voteAddress) {
+      const delegateApiResponse = await api.retrieveDelegate(voteAddress);
+      const delegate = get(delegateApiResponse, 'data.data.username', '');
+      set(wallet, 'delegate', delegate);
+    }
+
     const name = get(state, 'importWalletReducer.name', '');
-    dispatch(myWalletsActions.addWallet({ ...wallet, name }));
+    set(wallet, 'name', name);
+
+    dispatch(myWalletsActions.addWallet(wallet));
     dispatch(loadFinished());
+
   } catch {
     dispatch(loadFailed());
   }

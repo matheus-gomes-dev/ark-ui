@@ -22,6 +22,7 @@ describe('import-wallet actions', () => {
 
     beforeEach(() => {
       api.importWallet = jest.fn(async () => Promise.resolve());
+      api.retrieveDelegate = jest.fn(async () => Promise.resolve());
     });
     
     const run = () => store.dispatch(importWalletActions.importWallet());
@@ -40,23 +41,46 @@ describe('import-wallet actions', () => {
       expect(api.importWallet).toHaveBeenCalledWith('fake-address');
     });
 
+    it('should retrieve delegate information if voting', async () => {
+      api.importWallet = jest.fn(async () => Promise.resolve({ 
+        data: {
+          data: { id: 'fake-wallet-id', vote: 'fake-voting-address' }
+        }
+      }));
+      jest.spyOn(api, 'retrieveDelegate');
+      await run();
+      expect(api.retrieveDelegate).toHaveBeenCalledWith('fake-voting-address');
+    });
+
     it('should dispatch load finished action if wallet was found', async () => {
       api.importWallet = jest.fn(async () => Promise.resolve());
       await run();
       expect(store.getActions()).toContainEqual(importWalletActions.loadFinished());
     });
 
-    it('should dispatch action to add new wallet to my wallets list, including defined name', async () => {
+    it('should dispatch action to add new wallet to my wallets table, including defined name and delegate', async () => {
+
+      const wallet = { id: 'fake-wallet-id', vote: 'fake-voting-address' };
+
       api.importWallet = jest.fn(async () => Promise.resolve({ 
         data: {
-          data: { id: 'fake-wallet-id' }
+          data: wallet
         }
       }));
-      jest.spyOn(api, 'importWallet');
+      api.retrieveDelegate = jest.fn(async () => Promise.resolve({ 
+        data: {
+          data: { username: 'fake-delegate-name' }
+        }
+      }));
+
       const state = { importWalletReducer: { name: 'fake-name' } };
       store = mockStore(state);
       await run();
-      expect(store.getActions()).toContainEqual(myWalletsActions.addWallet({ id: 'fake-wallet-id', name: 'fake-name' }));
+      expect(store.getActions()).toContainEqual(myWalletsActions.addWallet({
+        ...wallet,
+        name: 'fake-name',
+        delegate: 'fake-delegate-name'
+      }));
     });
     
     it('should dispatch load failed action if wallet was not found', async () => {
