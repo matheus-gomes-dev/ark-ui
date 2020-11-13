@@ -15,7 +15,7 @@ const loadStarted = () => ({ type: Types.loadStarted });
 const loadFinished = () => ({ type: Types.loadFinished });
 const loadFailed = () => ({ type: Types.loadFailed });
 
-const importWallet = (publicAddress) => async (dispatch, _, { api }) => {
+const importWallet = (publicAddress, name) => async (dispatch, _, { api }) => {
   dispatch(loadStarted());
   try {
     const apiResponse = await api.importWallet(publicAddress);

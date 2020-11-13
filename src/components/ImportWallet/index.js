@@ -19,8 +19,8 @@ const ImportWallet = ({
 }) => (
   <div className="container xl bg-white mt-8 rounded-lg responsive-display">
     <div className="h-half w-full">
-      <div className="m-4 sm:m-8 pt-2 sm:pt-8">
-        <span>1. Import Wallet</span>
+      <div className="m-4 sm:m-8 pt-2 sm:pt-8 font-black">
+        <span>Import Wallet</span>
       </div>
         <Input
           label="Name"

@@ -21,6 +21,17 @@
   height: calc(100vh - 180px);
 }
 
+.overflow-y {
+  overflow-y: auto;
+}
+
+.table-wrapper {
+  max-height: 80%;
+  max-width: 94%;
+  overflow-y: auto;
+  margin: auto;
+}
+
 input {
   border: 1px solid #ccc;
   border-radius: 4px;

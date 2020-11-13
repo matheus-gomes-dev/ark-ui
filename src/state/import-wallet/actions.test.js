@@ -16,6 +16,7 @@ describe('import-wallet actions', () => {
     const middlewares = [thunk.withExtraArgument({ api })];
     const mockStore = configureStore(middlewares);
     store = mockStore();
+    // store = mockStore({ myState: {} });
   });
 
   describe('importWallet', () => {
