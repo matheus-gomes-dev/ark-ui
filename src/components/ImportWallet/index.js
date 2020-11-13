@@ -40,7 +40,7 @@ const ImportWallet = ({
           isLoading={isLoading}
           disabled={!address}
           success={success}
-          onClick={() => importWallet(address)}
+          onClick={() => importWallet()}
         />
       </div>
     </div>

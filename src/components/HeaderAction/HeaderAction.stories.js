@@ -23,3 +23,8 @@ export const CreateWallet = Template.bind({});
 CreateWallet.args = {
   action: 'add-wallet',
 };
+
+export const SeeDelegates = Template.bind({});
+SeeDelegates.args = {
+  action: 'see-delegates',
+};

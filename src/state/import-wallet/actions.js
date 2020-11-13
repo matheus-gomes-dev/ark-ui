@@ -15,12 +15,15 @@ const loadStarted = () => ({ type: Types.loadStarted });
 const loadFinished = () => ({ type: Types.loadFinished });
 const loadFailed = () => ({ type: Types.loadFailed });
 
-const importWallet = (publicAddress, name) => async (dispatch, _, { api }) => {
+const importWallet = () => async (dispatch, getState, { api }) => {
   dispatch(loadStarted());
   try {
-    const apiResponse = await api.importWallet(publicAddress);
+    const state = getState();
+    const address = get(state, 'importWalletReducer.address', '');
+    const apiResponse = await api.importWallet(address);
     const wallet = get(apiResponse, 'data.data', {});
-    dispatch(myWalletsActions.addWallet(wallet));
+    const name = get(state, 'importWalletReducer.name', '');
+    dispatch(myWalletsActions.addWallet({ ...wallet, name }));
     dispatch(loadFinished());
   } catch {
     dispatch(loadFailed());

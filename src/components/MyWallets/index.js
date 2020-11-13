@@ -23,10 +23,10 @@ const MyWallets = ({ myWallets }) => (
           </thead>
           <tbody>
             {myWallets.map((wallet, index) => (
-              <tr ket={`wallet_${get(wallet, 'address', index)}`}>
+              <tr key={`wallet_${get(wallet, 'address', index)}`}>
                 <td className="border px-4 py-2 hidden lg:block">{get(wallet, 'address', '')}</td>
                 <td className="border px-4 py-2">{get(wallet, 'name', '')}</td>
-                <td className="border px-4 py-2">{get(wallet, 'voting', '')}</td>
+                <td className="border px-4 py-2">{get(wallet, 'vote', '')}</td>
                 <td className="border px-4 py-2">{get(wallet, 'balance', '')}</td>
                 {/* <td className="border px-4 py-2">
                   <div className="flex justify-evenly items-center">

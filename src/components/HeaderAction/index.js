@@ -47,7 +47,7 @@ const HeaderAction = ({ action, isActive = false, hasDivider, onClick }) => (
 
 
 HeaderAction.propTypes = {
-  action: PropTypes.oneOf(['list-wallets', 'import-wallet', 'add-wallet']),
+  action: PropTypes.oneOf(['list-wallets', 'import-wallet', 'add-wallet', 'see-delegates']),
   isActive: PropTypes.bool,
   hasDivider: PropTypes.bool,
   onClick: PropTypes.func
