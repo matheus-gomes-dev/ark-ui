@@ -23,11 +23,11 @@ const MyWallets = ({ myWallets }) => (
           </thead>
           <tbody>
             {myWallets.map((wallet, index) => (
-              <tr key={`wallet_${get(wallet, 'address', index)}`}>
-                <td className="border px-4 py-2 hidden lg:block">{get(wallet, 'address', '')}</td>
-                <td className="border px-4 py-2">{get(wallet, 'name', '')}</td>
-                <td className="border px-4 py-2">{get(wallet, 'delegate', '')}</td>
-                <td className="border px-4 py-2">{get(wallet, 'balance', '')}</td>
+              <tr className="hover:bg-gray-100 cursor-pointer" key={`wallet_${get(wallet, 'address', index)}`}>
+                <td className="border-t px-4 py-2 hidden lg:block">{get(wallet, 'address', '')}</td>
+                <td className="border-t px-4 py-2">{get(wallet, 'name', '')}</td>
+                <td className="border-t px-4 py-2">{get(wallet, 'delegate', '')}</td>
+                <td className="border-t px-4 py-2">{get(wallet, 'balance', '')}</td>
                 {/* <td className="border px-4 py-2">
                   <div className="flex justify-evenly items-center">
                     <div className="w-8 flex justify-center items-center">
