@@ -1,11 +1,13 @@
 import React from 'react';
 import { capitalize, pick } from 'lodash';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { walletProperties } from 'definitions';
 import Table from 'components/Table';
 
-const MyWallets = ({ myWallets }) => {
+const MyWallets = ({ myWallets, history }) => {
 
   const tHead = walletProperties.map(property => capitalize(property));
   const tBody = myWallets.reduce((result, wallet) => {
@@ -20,7 +22,20 @@ const MyWallets = ({ myWallets }) => {
         <span>My Wallets</span>
       </div>
       <div className="text-sm lg:overflow-x-hidden table-wrapper">
-        <Table tHead={tHead} tBody={tBody} />
+        <Table
+          tHead={tHead}
+          tBody={tBody}
+          Actions={({ onTransactionClick }) => (
+            <td className="border-b px-4 py-2">
+              <div className="flex justify-evenly items-center">
+                <div className="w-8 flex justify-center items-center">
+                  <FontAwesomeIcon icon={faExchangeAlt} onClick={onTransactionClick} title="See Transactions" />
+                </div>
+              </div>
+            </td> 
+          )}
+          onTransactionClick={(param) => history.push(`/transactions/${param[0]}`)}
+        />
       </div>
     </div>
   )
