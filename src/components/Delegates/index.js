@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { capitalize, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import actions from 'state/delegates/actions';
 import { delegateProperties } from 'definitions';
@@ -25,7 +27,7 @@ const Delegates = ({
   const tHead = delegateProperties.map(property => capitalize(property));
   const tBody = delegates.reduce((result, delegate) => {
     delegate = pick(delegate, delegateProperties);
-    const row = Object.keys(delegate).map(key => delegate[key]);
+    const row = Object.keys(delegate).map(key => delegate[key].toString());
     return [...result, row];
   }, []);
 
@@ -34,9 +36,12 @@ const Delegates = ({
       <div className="m-4 sm:m-8 pt-2 sm:pt-8 font-black">
         <span>Delegates</span>
       </div>
-      <div className="text-sm lg:overflow-x-hidden table-wrapper">
+      {isLoading && <div className="flex justify-center items-center h-64 text-5xl text-red-600">
+        <FontAwesomeIcon icon={faSpinner} spin />
+      </div>}
+      {!isLoading && <div className="text-sm lg:overflow-x-hidden table-wrapper">
         <Table tHead={tHead} tBody={tBody} />
-      </div>
+      </div>}
     </div>
   )
 };

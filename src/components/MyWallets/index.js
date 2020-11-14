@@ -1,5 +1,5 @@
 import React from 'react';
-import { capitalize } from 'lodash';
+import { capitalize, pick } from 'lodash';
 import { connect } from 'react-redux';
 
 import { walletProperties } from 'definitions';
@@ -9,7 +9,8 @@ const MyWallets = ({ myWallets }) => {
 
   const tHead = walletProperties.map(property => capitalize(property));
   const tBody = myWallets.reduce((result, wallet) => {
-    const row = Object.keys(wallet).map(key => wallet[key]);
+    wallet = pick(wallet, walletProperties);
+    const row = Object.keys(wallet).map(key => wallet[key].toString());
     return [...result, row];
   }, []);
 
