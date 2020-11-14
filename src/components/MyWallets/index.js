@@ -1,7 +1,6 @@
 import React from 'react';
 import { capitalize } from 'lodash';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { walletProperties } from 'definitions';
 import Table from 'components/Table';
@@ -11,7 +10,7 @@ const MyWallets = ({ myWallets }) => {
   const tHead = walletProperties.map(property => capitalize(property));
   const tBody = myWallets.reduce((result, wallet) => {
     const row = Object.keys(wallet).map(key => wallet[key]);
-    return [...result, row]
+    return [...result, row];
   }, []);
 
   return (

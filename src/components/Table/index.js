@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Table = ({ tHead, tBody }) => (
-  <table className="table-auto w-full">
+  <table className="table-auto w-full relative">
     <thead className="bg-gray-200">
       <tr>
         {
           tHead.map((value, index) => (
             <th
               key={`table_th_${index}`}
-              className={"px-4 py-2 ml-0"}
+              className="px-4 py-2 ml-0 sticky"
             >
               {value}
             </th>

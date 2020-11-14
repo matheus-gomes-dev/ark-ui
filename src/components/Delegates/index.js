@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { capitalize } from 'lodash';
+import { capitalize, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -7,16 +7,26 @@ import actions from 'state/delegates/actions';
 import { delegateProperties } from 'definitions';
 import Table from 'components/Table';
 
-const Delegates = ({ loadDelegates, delegates = [] }) => {
+const Delegates = ({
+  delegates = [],
+  isLoading,
+  page,
+  totalCount,
+  previous,
+  next,
+  hasError,
+  loadDelegates
+}) => {
 
   useEffect(() => {
     loadDelegates();
   }, []);
 
   const tHead = delegateProperties.map(property => capitalize(property));
-  const tBody = delegates.reduce((result, wallet) => {
-    const row = Object.keys(wallet).map(key => wallet[key]);
-    return [...result, row]
+  const tBody = delegates.reduce((result, delegate) => {
+    delegate = pick(delegate, delegateProperties);
+    const row = Object.keys(delegate).map(key => delegate[key]);
+    return [...result, row];
   }, []);
 
   return (
@@ -31,10 +41,16 @@ const Delegates = ({ loadDelegates, delegates = [] }) => {
   )
 };
 
-// const mapStateToProps = state => ({
-// //   myWallets: state.myWalletsReducer.myWallets
-// });
+const mapStateToProps = state => ({
+  delegates: state.delegatesReducer.delegates,
+  isLoading: state.delegatesReducer.isLoading,
+  page: state.delegatesReducer.page,
+  totalCount: state.delegatesReducer.totalCount,
+  previous: state.delegatesReducer.previous,
+  next: state.delegatesReducer.next,
+  hasError: state.delegatesReducer.hasError,
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Delegates);
+export default connect(mapStateToProps, mapDispatchToProps)(Delegates);

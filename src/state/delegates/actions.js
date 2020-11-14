@@ -1,5 +1,4 @@
-import { get, set } from 'lodash';
-import myWalletsActions from 'state/my-wallets/actions';
+import { get } from 'lodash';
 
 export const Types = {
   loadStarted: 'DELEGATES_LOAD_STARTED',
