@@ -24,11 +24,12 @@ const importWallet = () => async (dispatch, getState, { api }) => {
     const wallet = get(apiResponse, 'data.data', {});
 
     const voteAddress = get(wallet, 'vote') || get(wallet, 'attributes.vote');
+    let delegate = '';
     if (voteAddress) {
       const delegateApiResponse = await api.retrieveDelegate(voteAddress);
-      const delegate = get(delegateApiResponse, 'data.data.username', '');
-      set(wallet, 'delegate', delegate);
+      delegate = get(delegateApiResponse, 'data.data.username', '');
     }
+    set(wallet, 'delegate', delegate);
 
     const name = get(state, 'importWalletReducer.name', '');
     set(wallet, 'name', name);
