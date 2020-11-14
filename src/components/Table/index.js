@@ -13,7 +13,7 @@ const Table = ({ tHead, tBody, Actions, onTransactionClick }) => {
     : header;
 
   const body = tBody.map((item, index) => (
-    <tr className="hover:bg-gray-100 cursor-pointer border-b" key={`tr_${index}`}>
+    <tr key={`tr_${index}`} className="hover:bg-gray-100 cursor-pointer border-b">
       {
         item.reduce((acc, value, colIndex, itemsArray) => {
           acc = ([

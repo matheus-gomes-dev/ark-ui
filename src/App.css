@@ -32,7 +32,7 @@
   margin: auto;
 }
 
-.delegates-table-wrapper {
+.paginated-table-wrapper {
   max-height: calc(80% - 48px);
   max-width: 94%;
   overflow-y: auto;

@@ -34,7 +34,7 @@ const MyWallets = ({ myWallets, history }) => {
               </div>
             </td> 
           )}
-          onTransactionClick={(param) => history.push(`/transactions/${param[0]}`)}
+          onTransactionClick={(wallet) => history.push(`/transactions/${wallet[0]}`)}
         />
       </div>
     </div>
