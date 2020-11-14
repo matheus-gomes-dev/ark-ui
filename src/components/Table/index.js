@@ -9,7 +9,7 @@ const Table = ({ tHead, tBody }) => (
           tHead.map((value, index) => (
             <th
               key={`table_th_${index}`}
-              className="px-4 py-2 ml-0 sticky"
+              className="px-4 py-2 ml-0"
             >
               {value}
             </th>
@@ -24,7 +24,7 @@ const Table = ({ tHead, tBody }) => (
             item.map((value, colIndex) => (
               <td
                 key={`td_${colIndex}`}
-                className={"px-4 py-2"}
+                className={"px-4 py-2 text-center"}
               >
                 {value}
               </td>

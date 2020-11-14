@@ -32,6 +32,13 @@
   margin: auto;
 }
 
+.delegates-table-wrapper {
+  max-height: calc(80% - 48px);
+  max-width: 94%;
+  overflow-y: auto;
+  margin: auto;
+}
+
 input {
   border: 1px solid #ccc;
   border-radius: 4px;

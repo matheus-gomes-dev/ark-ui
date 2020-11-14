@@ -10,7 +10,7 @@ const renderLabel = (label, isLoading, success) => {
 };
 
 const Button = ({ label, disabled, success, isLoading, size = 'md', onClick }) => (
-  <button disabled={disabled || isLoading || success} className={`btn-${size}`} onClick={onClick}>
+  <button disabled={disabled || isLoading || success} className={`btn-${size} text-${size}`} onClick={onClick}>
     {renderLabel(label, isLoading, success)}
   </button>
 );
