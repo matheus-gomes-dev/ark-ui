@@ -69,6 +69,21 @@ describe('import-wallet store', () => {
 
   });
 
+  describe('address', () => {
+
+    it('should be null by default', () => {
+      const state = store.getState().transactionsReducer;
+      expect(state.address).toBe(null);
+    });
+
+    it('should be updated with load finished page parameter', () => {
+      store.dispatch(actions.loadFinished({}, 2, 'fake-address'));
+      const state = store.getState().transactionsReducer;
+      expect(state.address).toBe('fake-address');
+    });
+
+  });
+
   describe('totalCount', () => {
 
     it('should be 0 by default', () => {

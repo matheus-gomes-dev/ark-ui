@@ -20,13 +20,12 @@ const Transactions = ({
   next,
   hasError,
   loadTransactions,
-  history
+  history,
+  address
 }) => {
 
   useEffect(() => {
-    console.log(history);
     const address = last(get(history, 'location.pathname', '').split('/'));
-    console.log(address);
     loadTransactions(null, address);
   }, []);
 
@@ -37,8 +36,6 @@ const Transactions = ({
     return [...result, row];
   }, []);
   const hasPagination = previous || next;
-
-  console.log(tBody);
 
   if (hasError) {
     return (
@@ -52,7 +49,7 @@ const Transactions = ({
           </div>
           <div className="text-base text-gray-800 m-4 text-center">
             <span>Failed to load transactions, click </span>
-            <span className="text-blue-500 cursor-pointer" onClick={() => loadTransactions()}>here</span>
+            <span className="text-blue-500 cursor-pointer" onClick={() => loadTransactions(null, address)}>here</span>
             <span> to try again</span>
           </div>
         </div>
@@ -87,6 +84,7 @@ const Transactions = ({
 
 const mapStateToProps = state => ({
   transactions: state.transactionsReducer.transactions,
+  address: state.transactionsReducer.address,
   isLoading: state.transactionsReducer.isLoading,
   page: state.transactionsReducer.page,
   totalCount: state.transactionsReducer.totalCount,

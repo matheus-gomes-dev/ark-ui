@@ -7,14 +7,14 @@ export const Types = {
 };
 
 const loadStarted = () => ({ type: Types.loadStarted });
-const loadFinished = (response, page) => ({ type: Types.loadFinished, payload: { response, page } });
+const loadFinished = (response, page, address) => ({ type: Types.loadFinished, payload: { response, page, address } });
 const loadFailed = () => ({ type: Types.loadFailed });
 
 const loadTransactions = (paginatedEndpoint, address, page = 1) => async (dispatch, _, { api }) => {
   dispatch(loadStarted());
   try {
     const apiResponse = await api.fetchTransactions(paginatedEndpoint, address);
-    dispatch(loadFinished(get(apiResponse, 'data', {}), page));
+    dispatch(loadFinished(get(apiResponse, 'data', {}), page, address));
   } catch {
     dispatch(loadFailed());
   }

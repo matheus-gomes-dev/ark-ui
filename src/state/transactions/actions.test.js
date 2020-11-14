@@ -42,10 +42,10 @@ describe('transactions actions', () => {
       expect(store.getActions()).toContainEqual(transactionActions.loadFinished([{ id: 'fake-id' }], 1));
     });
 
-    it('should dispatch load finished action with target page if provided', async () => {
+    it('should dispatch load finished action with target page and address', async () => {
       api.fetchTransactions = jest.fn(async () => Promise.resolve({ data: [{ id: 'fake-id' }] }));
       await run('', 'fake-address', 2);
-      expect(store.getActions()).toContainEqual(transactionActions.loadFinished([{ id: 'fake-id' }], 2));
+      expect(store.getActions()).toContainEqual(transactionActions.loadFinished([{ id: 'fake-id' }], 2, 'fake-address'));
     });
     
     it('should dispatch load failed action if api fails', async () => {
