@@ -29,6 +29,13 @@ describe('import-wallet store', () => {
       expect(state.name).toBe('');
     });
 
+    it('should reset if reset action is dispatch', () => {
+      store.dispatch(actions.nameUpdated('fake-value'));
+      store.dispatch(actions.reset());
+      const state = store.getState().importWalletReducer;
+      expect(state.name).toBe('');
+    });
+
   });
 
   describe('address', () => {
@@ -47,6 +54,13 @@ describe('import-wallet store', () => {
     it('should reset when load finished', () => {
       store.dispatch(actions.addressUpdated('fake-value'));
       store.dispatch(actions.loadFinished());
+      const state = store.getState().importWalletReducer;
+      expect(state.address).toBe('');
+    });
+
+    it('should reset if reset action is dispatch', () => {
+      store.dispatch(actions.addressUpdated('fake-value'));
+      store.dispatch(actions.reset());
       const state = store.getState().importWalletReducer;
       expect(state.address).toBe('');
     });
@@ -80,6 +94,13 @@ describe('import-wallet store', () => {
       expect(state.isLoading).toBe(false);
     });
 
+    it('should reset if reset action is dispatch', () => {
+      store.dispatch(actions.loadStarted());
+      store.dispatch(actions.reset());
+      const state = store.getState().importWalletReducer;
+      expect(state.isLoading).toBe(false);
+    });
+
   });
 
   describe('hasError', () => {
@@ -98,6 +119,13 @@ describe('import-wallet store', () => {
     it('should be reseted if input value changes', () => {
       store.dispatch(actions.loadFailed());
       store.dispatch(actions.addressUpdated('fake-value'));
+      const state = store.getState().importWalletReducer;
+      expect(state.hasError).toBe(false);
+    });
+
+    it('should reset if reset action is dispatch', () => {
+      store.dispatch(actions.loadFailed());
+      store.dispatch(actions.reset());
       const state = store.getState().importWalletReducer;
       expect(state.hasError).toBe(false);
     });
@@ -134,6 +162,12 @@ describe('import-wallet store', () => {
     it('should be reseted if input value changes', () => {
       store.dispatch(actions.loadFinished());
       store.dispatch(actions.addressUpdated('fake-value'));
+      const state = store.getState().importWalletReducer;
+      expect(state.hasError).toBe(false);
+    });
+
+    it('should reset if reset action is dispatch', () => {
+      store.dispatch(actions.loadFinished());
       const state = store.getState().importWalletReducer;
       expect(state.hasError).toBe(false);
     });

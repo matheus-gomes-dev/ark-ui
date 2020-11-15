@@ -6,7 +6,8 @@ export const Types = {
   addressUpdated: 'IMPORT_WALLET_ADDRESS_UPDATED',
   loadStarted: 'IMPORT_WALLET_LOAD_STARTED',
   loadFinished: 'IMPORT_WALLET_LOAD_FINISHED',
-  loadFailed: 'IMPORT_WALLET_LOAD_FAILED'
+  loadFailed: 'IMPORT_WALLET_LOAD_FAILED',
+  reset: 'IMPORT_WALLET_RESET'
 };
 
 const nameUpdated = (name) => ({ type: Types.nameUpdated, payload: { name }});
@@ -14,6 +15,7 @@ const addressUpdated = (address) => ({ type: Types.addressUpdated, payload: { ad
 const loadStarted = () => ({ type: Types.loadStarted });
 const loadFinished = () => ({ type: Types.loadFinished });
 const loadFailed = () => ({ type: Types.loadFailed });
+const reset = () => ({ type: Types.reset });
 
 const importWallet = () => async (dispatch, getState, { api }) => {
   dispatch(loadStarted());
@@ -49,7 +51,8 @@ const Actions = {
   loadStarted,
   loadFinished,
   loadFailed,
-  importWallet
+  importWallet,
+  reset
 };
 
 export default Actions;

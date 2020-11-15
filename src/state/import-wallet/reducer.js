@@ -14,7 +14,8 @@ const reductionLookup = {
   [Types.addressUpdated]: (state, { address }) => ({ ...state, address, hasError: false, success: false }),
   [Types.loadStarted]: (state) => ({ ...state, isLoading: true, success: false }),
   [Types.loadFinished]: (state) => ({ ...state, isLoading: false, name: '', address: '', success: true }),
-  [Types.loadFailed]: (state) => ({ ...state, isLoading: false, hasError: true, success: false })
+  [Types.loadFailed]: (state) => ({ ...state, isLoading: false, hasError: true, success: false }),
+  [Types.reset]: () => initialState
 };
 
 export default genericReducer(initialState, reductionLookup);
