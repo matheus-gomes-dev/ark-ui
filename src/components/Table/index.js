@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Table = ({ tHead, tBody, Actions, onTransactionClick }) => {
+const Table = ({ tHead = [], tBody = [], Actions, onTransactionClick }) => {
 
   let header = tHead.map((value, index) => (
     <th key={`table_th_${index}`} className="px-4 py-2 ml-0">
@@ -18,7 +18,7 @@ const Table = ({ tHead, tBody, Actions, onTransactionClick }) => {
         item.reduce((acc, value, colIndex, itemsArray) => {
           acc = ([
             ...acc,
-            <td key={`td_${colIndex}`} className={"px-4 py-2 text-center"}>
+            <td key={`td_${colIndex}`} className="px-4 py-2 text-center text-gray-700">
               {value}
             </td>
           ]);
