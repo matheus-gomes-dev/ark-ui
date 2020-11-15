@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { capitalize, get, last, pick } from 'lodash';
+import { capitalize, get, isEmpty, last, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,7 +21,6 @@ const Transactions = ({
   hasError,
   loadTransactions,
   history,
-  address
 }) => {
 
   useEffect(() => {
@@ -48,13 +47,29 @@ const Transactions = ({
             <FontAwesomeIcon icon={faExclamationTriangle} />
           </div>
           <div className="text-base text-gray-800 m-4 text-center">
-            <span>Failed to load transactions, click </span>
-            <span className="text-blue-500 cursor-pointer" onClick={() => loadTransactions(null, address)}>here</span>
-            <span> to try again</span>
+            <span>Failed to load transactions</span>
           </div>
         </div>
       </div>
-    )
+    );
+  }
+
+  if (!isLoading && isEmpty(transactions)) {
+    return (
+      <div className="container xl bg-white mt-8 rounded-lg responsive-display">
+        <div className="m-4 sm:m-8 pt-2 sm:pt-8 font-black">
+          <span>Transactions</span>
+        </div>
+        <div className="flex flex-col justify-center items-center h-64 text-6xl text-gray-400">
+          <div>
+            <FontAwesomeIcon icon={faExclamationTriangle} />
+          </div>
+          <div className="text-base text-gray-800 m-4 text-center">
+            <span>No transactions found for this wallet</span>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -84,7 +99,6 @@ const Transactions = ({
 
 const mapStateToProps = state => ({
   transactions: state.transactionsReducer.transactions,
-  address: state.transactionsReducer.address,
   isLoading: state.transactionsReducer.isLoading,
   page: state.transactionsReducer.page,
   totalCount: state.transactionsReducer.totalCount,

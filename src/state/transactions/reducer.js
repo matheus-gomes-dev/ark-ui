@@ -20,7 +20,7 @@ const reductionLookup = {
     const meta = get(response, 'meta', {});
     const next = get(meta, 'next');
     const previous = get(meta, 'previous');
-    const totalCount = get(meta, 'totalCount');
+    const totalCount = get(meta, 'totalCount', 0);
     const transactions = get(response, 'data', []).map(transaction =>
       ({ ...transaction, date: get(transaction, 'timestamp.human', '')}));
     

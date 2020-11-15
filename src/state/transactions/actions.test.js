@@ -47,6 +47,12 @@ describe('transactions actions', () => {
       await run('', 'fake-address', 2);
       expect(store.getActions()).toContainEqual(transactionActions.loadFinished([{ id: 'fake-id' }], 2, 'fake-address'));
     });
+
+    it('should dispatch load finished action if api response status is 404', async () => {
+      api.fetchTransactions = jest.fn(async () => Promise.reject({ response: { status: 404 }}));
+      await run('', 'fake-address', 1);
+      expect(store.getActions()).toContainEqual(transactionActions.loadFinished({}, 1, 'fake-address'));
+    });
     
     it('should dispatch load failed action if api fails', async () => {
       api.fetchTransactions = jest.fn(async () => Promise.reject());

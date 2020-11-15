@@ -15,7 +15,11 @@ const loadTransactions = (paginatedEndpoint, address, page = 1) => async (dispat
   try {
     const apiResponse = await api.fetchTransactions(paginatedEndpoint, address);
     dispatch(loadFinished(get(apiResponse, 'data', {}), page, address));
-  } catch {
+  } catch (error) {
+    if (get(error, 'response.status') === 404) {
+      dispatch(loadFinished({}, page, address));
+      return;
+    }
     dispatch(loadFailed());
   }
 };
