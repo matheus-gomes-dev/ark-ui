@@ -22,17 +22,17 @@ const ImportWallet = ({
       <div className="m-4 sm:m-8 pt-2 sm:pt-8 font-black">
         <span>Import Wallet</span>
       </div>
-        <Input
-          label="Name"
-          value={name}
-          onChange={(e) => nameUpdated(e.target.value)}
-        />
-        <Input
-          label="Address"
-          value={address}
-          error={hasError ? 'Wallet not found' : ''}
-          onChange={(e) => addressUpdated(e.target.value)}
-        />
+      <Input
+        label="Name"
+        value={name}
+        onChange={(e) => nameUpdated(e.target.value)}
+      />
+      <Input
+        label="Address"
+        value={address}
+        error={hasError ? 'Wallet not found' : ''}
+        onChange={(e) => addressUpdated(e.target.value)}
+      />
       <div className="flex justify-center items-center pt-4">
         <Button
           label="Import"

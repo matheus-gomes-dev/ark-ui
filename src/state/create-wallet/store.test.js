@@ -19,7 +19,7 @@ describe('create-wallet store', () => {
     });
 
     it('should change when generate phrase action is dispatched', () => {
-      store.dispatch(actions.generatePhrase(['fake-phrase']));
+      store.dispatch(actions.generatePhrase());
       const state = store.getState().createWalletReducer;
       expect(state.phrase).toStrictEqual(['fake-phrase']);
     });
@@ -33,6 +33,50 @@ describe('create-wallet store', () => {
 
   });
 
+  describe('name', () => {
+
+    it('should be empty by default', () => {
+      const state = store.getState().createWalletReducer;
+      expect(state.name).toEqual('');
+    });
+
+    it('should change when name updated action is dispatched', () => {
+      store.dispatch(actions.nameUpdated('fake-name'));
+      const state = store.getState().createWalletReducer;
+      expect(state.name).toEqual('fake-name');
+    });
+
+    it('should reset when reset action is dispatched', () => {
+      store.dispatch(actions.nameUpdated('fake-name'));
+      store.dispatch(actions.resetWalletCreation());
+      const state = store.getState().createWalletReducer;
+      expect(state.name).toEqual('');
+    });
+
+  });
+
+  describe('step', () => {
+
+    it('should be "name-definition" by default', () => {
+      const state = store.getState().createWalletReducer;
+      expect(state.step).toEqual('name-definition');
+    });
+
+    it('should change when change step action is dispatched', () => {
+      store.dispatch(actions.stepChanged('fake-step'));
+      const state = store.getState().createWalletReducer;
+      expect(state.step).toEqual('fake-step');
+    });
+
+    it('should be "name-definition" when reset action is dispatched', () => {
+      store.dispatch(actions.stepChanged('fake-step'));
+      store.dispatch(actions.resetWalletCreation());
+      const state = store.getState().createWalletReducer;
+      expect(state.step).toEqual('name-definition');
+    });
+
+  });
+
   describe('address', () => {
 
     it('should be empty by default', () => {
@@ -40,67 +84,17 @@ describe('create-wallet store', () => {
       expect(state.address).toBe('');
     });
 
-    it('should change when load finished action is dispatched', () => {
-      store.dispatch(actions.loadFinished('fake-address'));
+    it('should change when address generated action is dispatched', () => {
+      store.dispatch(actions.addressGenerated('fake-address'));
       const state = store.getState().createWalletReducer;
       expect(state.address).toBe('fake-address');
     });
 
     it('should reset when reset action is dispatched', () => {
-      store.dispatch(actions.loadFinished('fake-value'));
+      store.dispatch(actions.addressGenerated('fake-address'));
       store.dispatch(actions.resetWalletCreation());
       const state = store.getState().createWalletReducer;
       expect(state.address).toBe('');
-    });
-
-  });
-
-  describe('isLoading', () => {
-
-    it('should be false by default', () => {
-      const state = store.getState().createWalletReducer;
-      expect(state.isLoading).toBe(false);
-    });
-
-    it('should be true when load starts', () => {
-      store.dispatch(actions.loadStarted());
-      const state = store.getState().createWalletReducer;
-      expect(state.isLoading).toBe(true);
-    });
-
-    it('should be false when load finishes', () => {
-      store.dispatch(actions.loadStarted());
-      store.dispatch(actions.loadFinished());
-      const state = store.getState().createWalletReducer;
-      expect(state.isLoading).toBe(false);
-    });
-
-    it('should be false when load fails', () => {
-      store.dispatch(actions.loadStarted());
-      store.dispatch(actions.loadFailed());
-      const state = store.getState().createWalletReducer;
-      expect(state.isLoading).toBe(false);
-    });
-
-  });
-
-  describe('hasError', () => {
-    
-    it('should be false by default', () => {
-      const state = store.getState().createWalletReducer;
-      expect(state.hasError).toBe(false);
-    });
-
-    it('should be true if load fails', () => {
-      store.dispatch(actions.loadFailed());
-      const state = store.getState().createWalletReducer;
-      expect(state.hasError).toBe(true);
-    });
-
-    it('should reset when reset action is dispatched', () => {
-      store.dispatch(actions.resetWalletCreation());
-      const state = store.getState().createWalletReducer;
-      expect(state.hasError).toBe(false);
     });
 
   });
