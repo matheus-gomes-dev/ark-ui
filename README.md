@@ -1,6 +1,12 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a responsive web application that communicates with [ARK](https://ark.io/) api to:
+
+* Import a wallet based on address / public key
+* Generate a new wallet with a random passphrase, based ARK's crypto package
+* See a list of transactions for the given wallet
+* Fetch a list of delegates and show who a wallet votes for (if voting)
 
 ## Available Scripts
 
