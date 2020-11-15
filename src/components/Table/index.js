@@ -8,9 +8,9 @@ const Table = ({ tHead, tBody, Actions, onTransactionClick }) => {
       {value}
     </th>
   ));
-  header = Actions
-    ? [...header, <th key="table_th_actions" className="px-4 py-2 ml-0">Actions</th>]
-    : header;
+  if (Actions) {
+    header.push(<th key="table_th_actions" className="px-4 py-2 ml-0">Actions</th>);
+  }
 
   const body = tBody.map((item, index) => (
     <tr key={`tr_${index}`} className="hover:bg-gray-100 cursor-pointer border-b">
