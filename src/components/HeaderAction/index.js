@@ -6,14 +6,14 @@ import { faWallet, faDownload, faPlus, faUserTie } from '@fortawesome/free-solid
 const icons = {
   'list-wallets': faWallet,
   'import-wallet': faDownload,
-  'add-wallet': faPlus,
+  'create-wallet': faPlus,
   'see-delegates': faUserTie
 };
 
 const labels = {
   'list-wallets': 'My Wallets',
   'import-wallet': 'Import Wallet',
-  'add-wallet': 'Create Wallet',
+  'create-wallet': 'Create Wallet',
   'see-delegates': 'Delegates'
 };
 
@@ -47,7 +47,7 @@ const HeaderAction = ({ action, isActive = false, hasDivider, onClick }) => (
 
 
 HeaderAction.propTypes = {
-  action: PropTypes.oneOf(['list-wallets', 'import-wallet', 'add-wallet', 'see-delegates']),
+  action: PropTypes.oneOf(['list-wallets', 'import-wallet', 'create-wallet', 'see-delegates']),
   isActive: PropTypes.bool,
   hasDivider: PropTypes.bool,
   onClick: PropTypes.func

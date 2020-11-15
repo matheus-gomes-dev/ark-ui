@@ -23,10 +23,10 @@ describe('HeaderAction', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
-  it('should render component for add wallet action', () => {
+  it('should render component for create wallet action', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-      <HeaderAction action="add-wallet" />,
+      <HeaderAction action="create-wallet" />,
       div
     );
     ReactDOM.unmountComponentAtNode(div);

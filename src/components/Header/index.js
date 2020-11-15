@@ -47,10 +47,10 @@ const Header = ({ location }) => (
           isActive={location.pathname === '/import-wallet'}
         />
       </Link>
-      <Link to={{ pathname: '/add-wallet'}}>
+      <Link to={{ pathname: '/create-wallet'}}>
         <HeaderAction
-          action="add-wallet"
-          isActive={location.pathname === '/add-wallet'}
+          action="create-wallet"
+          isActive={location.pathname === '/create-wallet'}
         />
       </Link>
     </div>

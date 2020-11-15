@@ -8,6 +8,7 @@ import MyWallets from 'components/MyWallets';
 import Transactions from 'components/Transactions';
 import Delegates from 'components/Delegates';
 import ImportWallet from 'components/ImportWallet';
+import CreateWallet from 'components/CreateWallet';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/transactions/:address" component={Transactions} />
             <Route exact path="/delegates" component={Delegates} />
             <Route exact path="/import-wallet" component={ImportWallet} />
+            <Route exact path="/create-wallet" component={CreateWallet} />
             <Redirect from="*" to="/" />
           </Switch>
         </div>
