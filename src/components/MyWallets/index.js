@@ -1,8 +1,9 @@
 import React from 'react';
-import { capitalize, pick } from 'lodash';
+import { capitalize, isEmpty, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 import { walletProperties } from 'definitions';
 import Table from 'components/Table';
@@ -21,7 +22,8 @@ const MyWallets = ({ myWallets, history }) => {
       <div className="m-4 sm:m-8 pt-2 sm:pt-8 font-black">
         <span>My Wallets</span>
       </div>
-      <div className="text-sm lg:overflow-x-hidden table-wrapper">
+
+      {!isEmpty(myWallets) && <div className="text-sm lg:overflow-x-hidden table-wrapper">
         <Table
           tHead={tHead}
           tBody={tBody}
@@ -36,7 +38,20 @@ const MyWallets = ({ myWallets, history }) => {
           )}
           onTransactionClick={(wallet) => history.push(`/transactions/${wallet[0]}`)}
         />
-      </div>
+      </div>}
+
+      {isEmpty(myWallets) && <div className="flex flex-col justify-center items-center h-64 text-6xl text-gray-400">
+        <div>
+          <FontAwesomeIcon icon={faExclamationTriangle} />
+        </div>
+        <div className="text-base text-gray-800 m-4 text-center">
+          <span>You have no wallets, click </span>
+          <Link to={{ pathname: '/create-wallet'}}>
+            <span className="text-blue-500 cursor-pointer">here</span>
+          </Link>
+          <span> to create one</span>
+        </div>
+      </div>}
     </div>
   )
 };
