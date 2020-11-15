@@ -1,12 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import Input from './';
-
-export default {
-  title: 'Form/Input',
-  component: Input
-};
 
 const Template = (args) => <Input {...args} />;
 
@@ -22,3 +16,9 @@ WithError.args = {
   type: 'text',
   error: 'Wallet not found'
 };
+
+const stories = {
+  title: 'Form/Input',
+  component: Input
+};
+export default stories;

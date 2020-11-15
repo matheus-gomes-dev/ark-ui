@@ -2,11 +2,6 @@ import React from 'react';
 
 import Button from './';
 
-export default {
-  title: 'Form/Button',
-  component: Button
-};
-
 const Template = (args) => <Button {...args} />;
 
 export const Enabled = Template.bind({});
@@ -54,3 +49,10 @@ Success.args = {
   label: 'Button',
   success: true
 };
+
+const stories = {
+  title: 'Form/Button',
+  component: Button
+};
+
+export default stories;

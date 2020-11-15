@@ -2,11 +2,6 @@ import React from 'react';
 
 import HeaderAction from './';
 
-export default {
-  title: 'Header/Action',
-  component: HeaderAction
-};
-
 const Template = (args) => <HeaderAction {...args} />;
 
 export const ListWallets = Template.bind({});
@@ -28,3 +23,9 @@ export const SeeDelegates = Template.bind({});
 SeeDelegates.args = {
   action: 'see-delegates',
 };
+
+const stories = {
+  title: 'Header/Action',
+  component: HeaderAction
+};
+export default stories;

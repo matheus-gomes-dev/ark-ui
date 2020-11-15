@@ -1,4 +1,4 @@
-import { get, truncate } from 'lodash';
+import { get } from 'lodash';
 
 import { Types } from './actions';
 import genericReducer from 'utils/generic-reducer';

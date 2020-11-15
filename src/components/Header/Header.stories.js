@@ -3,7 +3,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import HeaderComponent from './';
 
-export default {
+const Template = (args) => (
+  <Router>
+    <HeaderComponent {...args} />
+  </Router>
+);
+
+export const Header = Template.bind({});
+
+const stories = {
   title: 'Header/Header',
   component: HeaderComponent,
   parameters: {
@@ -16,10 +24,4 @@ export default {
   },
 };
 
-const Template = (args) => (
-  <Router>
-    <HeaderComponent {...args} />
-  </Router>
-);
-
-export const Header = Template.bind({});
+export default stories;

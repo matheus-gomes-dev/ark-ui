@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   createWalletReducer
 });
 
-export default (extraArguments) => configureStore({
+const store = (extraArguments) => configureStore({
   reducer: rootReducer,
   middleware: [thunk.withExtraArgument(extraArguments)]
 });
+export default store;
