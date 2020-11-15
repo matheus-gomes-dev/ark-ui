@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { capitalize, pick } from 'lodash';
+import { capitalize, isEmpty, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +23,7 @@ const Delegates = ({
 }) => {
 
   useEffect(() => {
+    if(!isEmpty(delegates) && page === 1) return;
     loadDelegates();
   }, []);
 
