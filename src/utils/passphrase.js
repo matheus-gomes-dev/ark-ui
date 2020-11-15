@@ -48,13 +48,13 @@ const generatePassPhrase = (size = 9) => {
 
     const randomIndex = random(0, words.length - 1);
     if (indexes.includes(randomIndex)) {
-      return [...indexes, generateIndexes(indexes)]
+      return generateIndexes(indexes);
     }
 
-    return [...indexes, randomIndex, generateIndexes(indexes)]
+    return generateIndexes([...indexes, randomIndex]);
   };
 
-  const wordsIndex = generateIndexes(size);
+  const wordsIndex = generateIndexes();
   const phrase = wordsIndex.map(index => words[index]);
   return phrase;
 };

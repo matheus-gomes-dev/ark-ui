@@ -8,27 +8,27 @@ describe('create-wallet store', () => {
   beforeEach(function() {
     api = {};
     store = createStore({ api });
-    phraseGenerator.generatePassPhrase = jest.fn(() => 'fake-phrase');
+    phraseGenerator.generatePassPhrase = jest.fn(() => ['fake-phrase']);
   });
 
   describe('phrase', () => {
 
     it('should be empty by default', () => {
       const state = store.getState().createWalletReducer;
-      expect(state.phrase).toBe('');
+      expect(state.phrase).toStrictEqual([]);
     });
 
     it('should change when generate phrase action is dispatched', () => {
-      store.dispatch(actions.generatePhrase('fake-phrase'));
+      store.dispatch(actions.generatePhrase(['fake-phrase']));
       const state = store.getState().createWalletReducer;
-      expect(state.phrase).toBe('fake-phrase');
+      expect(state.phrase).toStrictEqual(['fake-phrase']);
     });
 
     it('should reset when reset action is dispatched', () => {
-      store.dispatch(actions.generatePhrase('fake-phrase'));
+      store.dispatch(actions.generatePhrase(['fake-phrase']));
       store.dispatch(actions.resetWalletCreation());
       const state = store.getState().createWalletReducer;
-      expect(state.phrase).toBe('');
+      expect(state.phrase).toStrictEqual([]);
     });
 
   });
