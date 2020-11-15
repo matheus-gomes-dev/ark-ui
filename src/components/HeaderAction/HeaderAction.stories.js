@@ -16,7 +16,7 @@ ImportWallet.args = {
 
 export const CreateWallet = Template.bind({});
 CreateWallet.args = {
-  action: 'add-wallet',
+  action: 'create-wallet',
 };
 
 export const SeeDelegates = Template.bind({});
