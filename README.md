@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 It is a [TailwindCSS](https://tailwindcss.com/) responsive web application that communicates with [ARK](https://ark.io/) api to:
 
 * Import a wallet based on address / public key
-* Generate a new wallet with a random passphrase, based ARK's crypto package
+* Generate a new wallet with a random passphrase, based on ARK's crypto package
 * See a list of transactions for the given wallet
 * Fetch a list of delegates and show who a wallet votes for (if voting)
 
