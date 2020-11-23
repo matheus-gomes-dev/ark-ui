@@ -1,8 +1,12 @@
+import React, { useEffect } from 'react';
 import { Switch, Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import './tailwind.output.css';
 import './App.css';
 
+import actions from 'state/my-wallets/actions';
 import Header from 'components/Header';
 import MyWallets from 'components/MyWallets';
 import Transactions from 'components/Transactions';
@@ -11,7 +15,12 @@ import ImportWallet from 'components/ImportWallet';
 import CreateWallet from 'components/CreateWallet';
 
 
-function App() {
+function App({ loadWallets }) {
+
+  useEffect(() => {
+    loadWallets();
+  }, [])
+
   return (
     <Router>
       <div className="container mx-auto">
@@ -31,4 +40,7 @@ function App() {
   );
 }
 
-export default App;
+
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
+export default connect(null, mapDispatchToProps)(App);

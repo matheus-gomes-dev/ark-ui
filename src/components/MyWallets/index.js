@@ -1,14 +1,16 @@
 import React from 'react';
 import { capitalize, isEmpty, pick } from 'lodash';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { walletProperties } from 'definitions';
+import actions from 'state/my-wallets/actions';
 import Table from 'components/Table';
 
-const MyWallets = ({ myWallets, history }) => {
+const MyWallets = ({ myWallets, isLoading, history }) => {
 
   const tHead = walletProperties.map(property => capitalize(property));
   const tBody = myWallets.reduce((result, wallet) => {
@@ -23,7 +25,11 @@ const MyWallets = ({ myWallets, history }) => {
         <span>My Wallets</span>
       </div>
 
-      {!isEmpty(myWallets) && <div className="text-sm lg:overflow-x-hidden table-wrapper">
+      {isLoading && <div className="flex justify-center items-center h-64 text-5xl text-red-600">
+        <FontAwesomeIcon icon={faSpinner} spin />
+      </div>}
+
+      {!isLoading && !isEmpty(myWallets) && <div className="text-sm lg:overflow-x-hidden table-wrapper">
         <Table
           tHead={tHead}
           tBody={tBody}
@@ -40,7 +46,7 @@ const MyWallets = ({ myWallets, history }) => {
         />
       </div>}
 
-      {isEmpty(myWallets) && <div className="flex flex-col justify-center items-center h-64 text-6xl text-gray-400">
+      {!isLoading && isEmpty(myWallets) && <div className="flex flex-col justify-center items-center h-64 text-6xl text-gray-400">
         <div>
           <FontAwesomeIcon icon={faExclamationTriangle} />
         </div>
@@ -56,8 +62,10 @@ const MyWallets = ({ myWallets, history }) => {
   )
 };
 
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const mapStateToProps = state => ({
-  myWallets: state.myWalletsReducer.myWallets
+  myWallets: state.myWalletsReducer.myWallets,
+  isLoading: state.myWalletsReducer.isLoading
 });
 
-export default connect(mapStateToProps, null)(MyWallets);
+export default connect(mapStateToProps, mapDispatchToProps)(MyWallets);

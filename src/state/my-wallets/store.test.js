@@ -9,6 +9,27 @@ describe('my-wallets store', () => {
     store = createStore({ api });
   });
 
+  describe('isLoading', () => {
+
+    it('should be true by default', () => {
+      const state = store.getState().myWalletsReducer;
+      expect(state.isLoading).toBe(true);
+    });
+
+    it('should be false when load finishes', () => {
+      store.dispatch(actions.loadFinished());
+      const state = store.getState().myWalletsReducer;
+      expect(state.isLoading).toBe(false);
+    });
+
+    it('should be false when load fails', () => {
+      store.dispatch(actions.loadFailed());
+      const state = store.getState().myWalletsReducer;
+      expect(state.isLoading).toBe(false);
+    });
+
+  });
+
   describe('myWallets', () => {
 
     it('should be empty by default', () => {
