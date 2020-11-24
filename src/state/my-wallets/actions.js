@@ -6,6 +6,8 @@ export const Types = {
   loadFinished: 'MY_WALLETS_LOAD_FINISHED',
   loadFailed: 'MY_WALLETS_LOAD_FAILED',
   addWallet: 'MY_WALLETS_ADD_WALLET',
+  favoriteWallet: 'MY_WALLETS_FAVORITE',
+  deleteWallet: 'MY_WALLETS_DELETE'
 };
 
 const loadStarted = () => ({ type: Types.loadStarted });
@@ -18,6 +20,17 @@ const addWallet = (wallet) => {
   storedWallets.push(wallet);
   localStorage.setItem(localStorageMyWalletsKey, JSON.stringify(storedWallets));
   return ({ type: Types.addWallet, payload: { wallet }});
+};
+
+const favoriteWallet = (index) => {
+  return ({ type: Types.favoriteWallet, payload: { index } })
+};
+const deleteWallet = (index) => {
+  let storedWallets = localStorage.getItem(localStorageMyWalletsKey);
+  storedWallets = storedWallets ? JSON.parse(storedWallets) : [];
+  storedWallets = storedWallets.filter((_, walletIndex) => walletIndex !== index);
+  localStorage.setItem(localStorageMyWalletsKey, JSON.stringify(storedWallets));
+  return ({ type: Types.deleteWallet, payload: { index } });
 };
 
 const loadWallets = () => async (dispatch, getState, { api }) => {
@@ -72,6 +85,8 @@ const Actions = {
   loadFinished,
   loadFailed,
   addWallet,
+  favoriteWallet,
+  deleteWallet,
   loadWallets
 };
 

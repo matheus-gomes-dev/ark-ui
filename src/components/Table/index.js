@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Table = ({ tHead = [], tBody = [], Actions, onTransactionClick }) => {
+const Table = ({
+  tHead = [],
+  tBody = [],
+  Actions,
+  onTransactionClick,
+  onFavoriteClick,
+  onDeleteClick
+}) => {
 
   let header = tHead.map((value, index) => (
     <th key={`table_th_${index}`} className="px-4 py-2 ml-0">
@@ -23,7 +30,15 @@ const Table = ({ tHead = [], tBody = [], Actions, onTransactionClick }) => {
             </td>
           ]);
           if ((colIndex === itemsArray.length - 1) && Actions) {
-            acc = [...acc, <Actions onTransactionClick={() => onTransactionClick(item)}/>];
+            acc = [
+              ...acc,
+              <Actions
+                key={`actions_${index}`}
+                onTransactionClick={() => onTransactionClick(item)}
+                onFavoriteClick={() => onFavoriteClick(index)}
+                onDeleteClick={() => onDeleteClick(index)}
+              />
+            ];
           }
           return acc;
         }, [])

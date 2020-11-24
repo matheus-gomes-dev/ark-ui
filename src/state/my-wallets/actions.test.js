@@ -48,6 +48,29 @@ describe('my-wallets actions', () => {
 
   });
 
+  describe('deleteWallet', () => {
+
+    beforeEach(() => {
+      jest.spyOn(window.localStorage.__proto__, 'setItem');
+      jest.spyOn(window.localStorage.__proto__, 'getItem');
+    });
+    
+    const run = (index) => store.dispatch(myWalletsActions.deleteWallet(index));
+
+    it('should remove stored wallet from localstorage by index', async () => {
+      window.localStorage.__proto__.getItem = constant(JSON.stringify([
+        { address: 'fake-wallet-address-0' },
+        { address: 'fake-wallet-address-1' }
+      ]));
+      await run(1);
+      expect(localStorage.setItem).toHaveBeenCalledWith(
+        localStorageMyWalletsKey,
+        JSON.stringify([{ address: 'fake-wallet-address-0' }])
+      );
+    });
+
+  });
+
   describe('loadWallets', () => {
 
     beforeEach(() => {

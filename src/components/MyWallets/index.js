@@ -3,14 +3,14 @@ import { capitalize, isEmpty, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faStar, faTrash, faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { walletProperties } from 'definitions';
 import actions from 'state/my-wallets/actions';
 import Table from 'components/Table';
 
-const MyWallets = ({ myWallets, isLoading, history }) => {
+const MyWallets = ({ myWallets, isLoading, history, favoriteWallet, deleteWallet }) => {
 
   const tHead = walletProperties.map(property => capitalize(property));
   const tBody = myWallets.reduce((result, wallet) => {
@@ -33,16 +33,35 @@ const MyWallets = ({ myWallets, isLoading, history }) => {
         <Table
           tHead={tHead}
           tBody={tBody}
-          Actions={({ onTransactionClick }) => (
+          Actions={({ onTransactionClick, onFavoriteClick, onDeleteClick }) => (
             <td className="border-b px-4 py-2">
               <div className="flex justify-evenly items-center">
-                <div className="w-8 flex justify-center items-center">
-                  <FontAwesomeIcon icon={faExchangeAlt} onClick={onTransactionClick} title="See Transactions" />
+                <div className="w-20 flex justify-evenly items-center">
+                  <FontAwesomeIcon
+                    className="hover:text-red-600"
+                    icon={faExchangeAlt}
+                    onClick={onTransactionClick}
+                    title="See Transactions"
+                  />
+                  <FontAwesomeIcon
+                    className="hover:text-red-600"
+                    icon={faStar}
+                    onClick={onFavoriteClick}
+                    title="Favorite"
+                  />
+                  <FontAwesomeIcon
+                    className="hover:text-red-600"
+                    icon={faTrash}
+                    onClick={onDeleteClick}
+                    title="Delete"
+                  />
                 </div>
               </div>
             </td> 
           )}
           onTransactionClick={(wallet) => history.push(`/transactions/${wallet[0]}`)}
+          onFavoriteClick={(index) => favoriteWallet(index)}
+          onDeleteClick={(index) => deleteWallet(index)}
         />
       </div>}
 

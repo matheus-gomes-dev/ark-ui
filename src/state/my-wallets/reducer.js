@@ -22,6 +22,10 @@ const reductionLookup = {
     const myWallets = get(state, 'myWallets', []);
     return ({ ...state, myWallets: [...myWallets, pick(wallet, walletProperties)] });
   },
+  [Types.deleteWallet]: (state, { index }) => {
+    const myWallets = get(state, 'myWallets', []);
+    return ({ ...state, myWallets: myWallets.filter((_, walletIndex) => walletIndex !== index)});
+  },
   [Types.loadStarted]: (state) => ({ ...state, isLoading: true }),
   [Types.loadFinished]: (state, { wallets = []}) => ({
     ...state,

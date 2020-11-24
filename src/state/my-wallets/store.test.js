@@ -50,6 +50,15 @@ describe('my-wallets store', () => {
       expect(state.myWallets).toStrictEqual([{ address: 'fake-address-0' }, { address: 'fake-address-1' }]);
     });
 
+    it('should remove wallet by index after delete action is dispatched', () => {
+      store.dispatch(actions.addWallet({ address: 'fake-address-0' }));
+      store.dispatch(actions.addWallet({ address: 'fake-address-1' }));
+      store.dispatch(actions.addWallet({ address: 'fake-address-2' }));
+      store.dispatch(actions.deleteWallet(1));
+      const state = store.getState().myWalletsReducer;
+      expect(state.myWallets).toStrictEqual([{ address: 'fake-address-0' }, { address: 'fake-address-2' }]);
+    });
+
   });
 
 });
