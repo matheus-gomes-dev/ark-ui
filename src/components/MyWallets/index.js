@@ -3,7 +3,7 @@ import { capitalize, isEmpty, pick } from 'lodash';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExchangeAlt, faStar, faTrash, faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faExchangeAlt, faTrash, faExclamationTriangle, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 import { walletProperties } from 'definitions';
@@ -33,7 +33,7 @@ const MyWallets = ({ myWallets, isLoading, history, favoriteWallet, deleteWallet
         <Table
           tHead={tHead}
           tBody={tBody}
-          Actions={({ onTransactionClick, onFavoriteClick, onDeleteClick }) => (
+          Actions={({ onTransactionClick, onDeleteClick }) => (
             <td className="border-b px-4 py-2">
               <div className="flex justify-evenly items-center">
                 <div className="w-20 flex justify-evenly items-center">
@@ -42,12 +42,6 @@ const MyWallets = ({ myWallets, isLoading, history, favoriteWallet, deleteWallet
                     icon={faExchangeAlt}
                     onClick={onTransactionClick}
                     title="See Transactions"
-                  />
-                  <FontAwesomeIcon
-                    className="hover:text-red-600"
-                    icon={faStar}
-                    onClick={onFavoriteClick}
-                    title="Favorite"
                   />
                   <FontAwesomeIcon
                     className="hover:text-red-600"
@@ -60,7 +54,6 @@ const MyWallets = ({ myWallets, isLoading, history, favoriteWallet, deleteWallet
             </td> 
           )}
           onTransactionClick={(wallet) => history.push(`/transactions/${wallet[0]}`)}
-          onFavoriteClick={(index) => favoriteWallet(index)}
           onDeleteClick={(index) => deleteWallet(index)}
         />
       </div>}

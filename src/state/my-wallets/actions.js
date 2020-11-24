@@ -6,7 +6,6 @@ export const Types = {
   loadFinished: 'MY_WALLETS_LOAD_FINISHED',
   loadFailed: 'MY_WALLETS_LOAD_FAILED',
   addWallet: 'MY_WALLETS_ADD_WALLET',
-  favoriteWallet: 'MY_WALLETS_FAVORITE',
   deleteWallet: 'MY_WALLETS_DELETE'
 };
 
@@ -22,9 +21,6 @@ const addWallet = (wallet) => {
   return ({ type: Types.addWallet, payload: { wallet }});
 };
 
-const favoriteWallet = (index) => {
-  return ({ type: Types.favoriteWallet, payload: { index } })
-};
 const deleteWallet = (index) => {
   let storedWallets = localStorage.getItem(localStorageMyWalletsKey);
   storedWallets = storedWallets ? JSON.parse(storedWallets) : [];
@@ -85,7 +81,6 @@ const Actions = {
   loadFinished,
   loadFailed,
   addWallet,
-  favoriteWallet,
   deleteWallet,
   loadWallets
 };

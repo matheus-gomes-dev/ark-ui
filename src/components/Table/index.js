@@ -6,7 +6,6 @@ const Table = ({
   tBody = [],
   Actions,
   onTransactionClick,
-  onFavoriteClick,
   onDeleteClick
 }) => {
 
@@ -35,7 +34,6 @@ const Table = ({
               <Actions
                 key={`actions_${index}`}
                 onTransactionClick={() => onTransactionClick(item)}
-                onFavoriteClick={() => onFavoriteClick(index)}
                 onDeleteClick={() => onDeleteClick(index)}
               />
             ];
