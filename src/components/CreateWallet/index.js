@@ -51,16 +51,16 @@ const CreateWallet = ({
 
         {step === 'passphrase' &&
           <div>
-            <div className="m-4 sm:m-8 lg:flex lg:justify-center lg:items-center sm:pt-8">
+            <div className="m-4 sm:m-8 xl:flex xl:justify-center xl:items-center sm:pt-8">
               {phrase.map((word, index) => (
-                <div className="m-1 inline-block lg:block" key={`phrase_word_${index}`}>
-                  <div className="h-8 w-20 text-sm bg-gray-200 flex justify-center items-center">
+                <div className="m-1 inline-block" key={`phrase_word_${index}`}>
+                  <div className="h-6 sm:h-8 w-20 text-xs bg-gray-200 flex justify-center items-center">
                     <span>{`${index + 1}. ${word}`}</span>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="flex justify-center items-center pt-2 sm:pt-8">
+            <div className="flex justify-center items-center pt-0 md:pt-8">
               <Button
                 label="Next"
                 size="md"
