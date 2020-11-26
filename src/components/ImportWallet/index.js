@@ -11,7 +11,7 @@ const ImportWallet = ({
   address,
   name,
   isLoading,
-  hasError,
+  error,
   success,
   addressUpdated,
   nameUpdated,
@@ -35,9 +35,9 @@ const ImportWallet = ({
           onChange={(e) => nameUpdated(e.target.value)}
         />
         <Input
-          label="Address"
+          label="Public key"
           value={address}
-          error={hasError ? 'Wallet not found' : ''}
+          error={error}
           onChange={(e) => addressUpdated(e.target.value)}
         />
         <div className="flex justify-center items-center pt-4">
@@ -45,7 +45,7 @@ const ImportWallet = ({
             label="Import"
             size="md"
             isLoading={isLoading}
-            disabled={!address}
+            disabled={!address || !!error}
             success={success}
             onClick={() => importWallet()}
           />
@@ -56,7 +56,7 @@ const ImportWallet = ({
           <span>Import Wallet</span>
         </div>
         <div className="text-white text-sm font-thin">
-          <span>Fill in the public address of your wallet</span>
+          <span>Fill in the public key of your wallet</span>
         </div>
         <div
           className="section-responsive-picture"
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
   name: state.importWalletReducer.name,
   address: state.importWalletReducer.address,
   isLoading: state.importWalletReducer.isLoading,
-  hasError: state.importWalletReducer.hasError,
+  error: state.importWalletReducer.error,
   success: state.importWalletReducer.success
 });
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);

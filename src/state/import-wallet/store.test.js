@@ -1,3 +1,4 @@
+import crypto from 'utils/crypto';
 import createStore from 'store';
 import actions from './actions';
 
@@ -7,6 +8,7 @@ describe('import-wallet store', () => {
   beforeEach(function() {
     api = {};
     store = createStore({ api });
+    jest.spyOn(crypto, 'isValidPublicKey');
   });
 
   describe('name', () => {
@@ -38,7 +40,7 @@ describe('import-wallet store', () => {
 
   });
 
-  describe('address', () => {
+  describe('address (public key)', () => {
 
     it('should be empty by default', () => {
       const state = store.getState().importWalletReducer;
@@ -103,31 +105,35 @@ describe('import-wallet store', () => {
 
   });
 
-  describe('hasError', () => {
+  describe('error', () => {
+
+    beforeEach(() => {
+      crypto.isValidPublicKey = jest.fn(() => true);
+    });
     
-    it('should be false by default', () => {
+    it('should be empty by default', () => {
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(false);
+      expect(state.error).toBe('');
     });
 
-    it('should be true if load fails', () => {
+    it('should be "Wallet not found" if load fails', () => {
       store.dispatch(actions.loadFailed());
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(true);
+      expect(state.error).toBe('Wallet not found');
     });
 
-    it('should be reseted if input value changes', () => {
-      store.dispatch(actions.loadFailed());
-      store.dispatch(actions.addressUpdated('fake-value'));
+    it('should be "Invalid public key" if field changed to invalid public key value', () => {
+      crypto.isValidPublicKey = jest.fn(() => false);
+      store.dispatch(actions.addressUpdated('invalid-public-key'));
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(false);
+      expect(state.error).toBe('Invalid public key');
     });
 
     it('should reset if reset action is dispatch', () => {
       store.dispatch(actions.loadFailed());
       store.dispatch(actions.reset());
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(false);
+      expect(state.error).toBe('');
     });
 
   });
@@ -163,13 +169,14 @@ describe('import-wallet store', () => {
       store.dispatch(actions.loadFinished());
       store.dispatch(actions.addressUpdated('fake-value'));
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(false);
+      expect(state.success).toBe(false);
     });
 
     it('should reset if reset action is dispatch', () => {
       store.dispatch(actions.loadFinished());
+      store.dispatch(actions.reset());
       const state = store.getState().importWalletReducer;
-      expect(state.hasError).toBe(false);
+      expect(state.success).toBe(false);
     });
 
   });
